@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://control.gd" type="Script" id=1]
+[ext_resource path="res://Settings.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boxes" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="PanelContainer" parent="Boxes"]
+margin_left = 456.0
+margin_top = 274.0
+margin_right = 567.0
+margin_bottom = 326.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Boxes/MainMenu"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 104.0
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="Boxes/MainMenu/VBoxContainer"]
+margin_right = 97.0
+margin_bottom = 14.0
+text = "MainMenu"
+
+[node name="Settings" type="Button" parent="Boxes/MainMenu/VBoxContainer"]
+margin_top = 18.0
+margin_right = 97.0
+margin_bottom = 38.0
+text = "show options"
+
+[node name="Settings" type="PanelContainer" parent="Boxes"]
+visible = false
+margin_left = 505.0
+margin_top = 293.0
+margin_right = 519.0
+margin_bottom = 307.0
+script = ExtResource( 2 )
+OptionButtonPath = NodePath("VBoxContainer/OptionButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Boxes/Settings"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 127.0
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="Boxes/Settings/VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 14.0
+text = "Settings"
+
+[node name="OptionButton" type="OptionButton" parent="Boxes/Settings/VBoxContainer"]
+margin_top = 18.0
+margin_right = 120.0
+margin_bottom = 38.0
+text = "Third"
+items = [ "First", null, false, 0, null, "Second", null, false, 1, null, "Third", null, false, 2, null ]
+selected = 2
+
+[connection signal="pressed" from="Boxes/MainMenu/VBoxContainer/Settings" to="." method="_on_Button_pressed"]
+[connection signal="tree_entered" from="Boxes/Settings/VBoxContainer/OptionButton" to="Boxes/Settings" method="_on_OptionButton_tree_entered"]
